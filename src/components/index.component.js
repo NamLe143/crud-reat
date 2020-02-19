@@ -1,0 +1,61 @@
+import React, { Component } from 'react';
+class Content extends React.Component {
+    componentWillMount() {
+       console.log('Component WILL MOUNT!')
+    }
+    componentDidMount() {
+       console.log('Component DID MOUNT!')
+    }
+    componentWillReceiveProps(newProps) {    
+       console.log('Component WILL RECIEVE PROPS!')
+    }
+    shouldComponentUpdate(newProps, newState) {
+       return true;
+    }
+    componentWillUpdate(nextProps, nextState) {
+       console.log('Component WILL UPDATE!');
+    }
+    componentDidUpdate(prevProps, prevState) {
+       console.log('Component DID UPDATE!')
+    }
+    componentWillUnmount() {
+       console.log('Component WILL UNMOUNT!')
+    }
+    render() {
+       return (
+          <div>
+             <h3>{this.props.myNumber}</h3>
+          </div>
+       );
+    }
+}
+class Index extends Component {
+    constructor(props) {
+        super(props);
+  
+        this.state = {
+           data: 0
+        }
+        this.setNewNumber = this.setNewNumber.bind(this)
+     };
+     setNewNumber() {
+        this.setState({data: this.state.data + 1});
+        console.log(this.refs.name.value);
+        
+     }
+    render() {
+        return (
+            <div>
+                <p>Welcome to Index Component!!</p>
+                <div className="form-group">
+                  <input type="text" className="form-control" ref='name'/>
+                  <small id="helpId" className="text-muted">Help text</small>
+                </div>
+                <button onClick = {this.setNewNumber}>INCREMENT</button>
+                <Content myNumber = {this.state.data}></Content>
+            </div>
+        );
+    }
+}
+
+export default Index;
